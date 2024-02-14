@@ -1,6 +1,7 @@
 package com.lbg.project.selenium;
 
 import java.time.Duration;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -216,13 +217,21 @@ public class ProjectTest {
 		WebElement changeTheme = this.driver.findElement(By.cssSelector("#root > div > nav > div > button"));
 		changeTheme.click();
 
+		String oldTab = driver.getWindowHandle();
+		driver.findElement(By.linkText("Before you continue to Google Maps")).click();
+		ArrayList<String> newTab = new ArrayList<String>(driver.getWindowHandles());
+		newTab.remove(oldTab);
+
 		WebElement map = this.driver.findElement(By.cssSelector("#root > div > div > div > a > p > b"));
 		map.click();
 
-		driver.findElement(By.linkText("B5 4BE - Google Maps")).click();
+//		driver.findElement(By.linkText(
+//				"https://www.google.co.uk/maps/place/Birmingham%2BB5%2B4BE/@52.4774309,-1.8958517,17z/data%3D!3m1!4b1!4m6!3m5!1s0x4870bc88ec3170a5:0x9a9cce05277e2103!8m2!3d52.4776053!4d-1.8948759!16s%252Fg%252F1tr8l00v?entry%3Dtts&gl=GB&m=0&pc=m&uxe=eomtm&cm=2&hl=en&src=1"));
+//		map.click();
+
 		WebElement cookies = this.driver.findElement(By.cssSelector(
 				"#yDmH0d > c-wiz > div > div > div > div.NIoIEf > div.G4njw > div.AIC7ge > div.CxJub > div.VtwTSb > form:nth-child(2) > div > div > button > div.VfPpkd-RLmnJb"));
 		cookies.click();
-//		Thread.sleep(2000);
+
 	}
 }
